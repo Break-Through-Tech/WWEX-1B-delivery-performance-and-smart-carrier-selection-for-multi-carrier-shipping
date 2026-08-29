@@ -38,10 +38,13 @@ Primary metric is Mean Absolute Error (in days) on the withheld transit_days, be
 
 ## 📊 Dataset
 
-**Name and Source:** [TBD]   
-**Format:** CSV / TSV   
-**Size:** [TBD]   
-**Location:** [To be provided directly by Challenge Advisor with data dictionary documentation]   
+**Name and Source:** ShipStation Global Multi-Carrier Shipment Dataset (synthetic) — generated programmatically; no real customer, carrier, or operational data. Fully reproducible by seed.
+
+**Format:** CSV / TSV (train.csv, test.csv)   
+
+**Size:** ~10.4 MB total (≤ 1 GB) — 40,030 training rows and 10,120 test rows, 31 features across 6 carriers, 6 service levels, and 306 origin→destination lanes; two withheld prediction targets.  
+
+**Location:** data/data_dictionary.md   
 
 ---
 
@@ -50,10 +53,16 @@ Primary metric is Mean Absolute Error (in days) on the withheld transit_days, be
 **ML Problem Type:** Classification,Regression,Recommendation Systems 
 
 **Recommended Libraries:**
-- [e.g., pandas, scikit-learn, TensorFlow, Hugging Face]
-
+- pandas / NumPy — data loading, cleaning, feature engineering
+- scikit-learn — baselines and core models (HistGradientBoostingRegressor, classifiers, pipelines, metrics)
+- XGBoost or LightGBM (optional) — stronger gradient boosting for the transit and cost models
+- matplotlib / seaborn — EDA and error-analysis visualizations
+  
 **Evaluation Metrics:**
-- [e.g., Accuracy, Precision/Recall, RMSE, BLEU score]
+- MAE (mean absolute error, in days) — primary metric for transit-time regression (Track A); beat the naive promised-date baseline of ~0.84
+- RMSE and % within ±1 day — secondary regression metrics
+- ROC-AUC and PR-AUC — on-time classification (Track B), since classes are ~73/27 and accuracy alone misleads
+- Cost/speed trade-off objective — for the carrier-recommendation stretch (e.g., cheapest option meeting a service promise at ≥90% confidence)
 
 ---
 
@@ -62,19 +71,14 @@ Primary metric is Mean Absolute Error (in days) on the withheld transit_days, be
 The following resources will help your team understand the problem space and potential technical approaches for this project:
 
 **Background Reading:**
-- [e.g., Link to an article or blog post about the problem domain]
-- [e.g., Link to an industry report or case study]
+- https://www.wwex.com/shipping-resources/scale-from-parcel-to-ltl-freight
 
 **Technical Tutorials:**
-- [e.g., Link to a free tutorial on the ML technique(s) involved]
-- [e.g., Link to documentation for a key library or tool]
+- [TimeSeriesSplit — scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)  
+  A reference for validating models on time-ordered data. 
 
-**Code Examples:**
-- [e.g., Link to a relevant GitHub repo]
-- [e.g., Link to a sample implementation or starter code]
-
-**Other:**
-- [Links to any additional resources — e.g., papers, videos, podcasts, etc.]
+- [Model Selection and Evaluation — scikit-learn](https://scikit-learn.org/stable/model_selection.html)  
+  Covers cross-validation, regression metrics, classification metrics, model comparison, and threshold selection.
 
 *Feel free to explore beyond these, and share anything interesting you find with me!*
 
@@ -94,9 +98,12 @@ Note: I will aim to respond within 48 hours. Please reach out to your AI Studio 
 > 
 
 **Recommended free coding / collaboration tools**
-* […]
-* […]
 
+- **GitHub Projects:** Milestones, task ownership, priorities, and progress tracking
+- **GitHub Issues:** Questions, tasks, blockers, and decision records
+- **Google Colab:** Data exploration and model experimentation
+- **Discord:** Brief team communication and questions
+- **matplotlib / seaborn:** Data exploration and model-result visualizations
 ---
 
 ## 🚀 Getting Started
@@ -110,3 +117,5 @@ I’m excited to work with you!
 ---
 
 ## ❓ Questions?
+
+Please bring any questions to our first meeting during the week of August 24th (Break Through Tech’s Bridge to Studio - Session C). 
