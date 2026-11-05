@@ -1,5 +1,7 @@
+catboost
 matplotlib
 numpy
 pandas
+scikit-learn
 jupyter
 nbconvert
