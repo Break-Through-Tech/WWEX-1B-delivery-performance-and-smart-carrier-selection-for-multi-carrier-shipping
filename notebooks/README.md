@@ -21,15 +21,17 @@ after running this pipeline — see `../models/README.md`.
 
 ### A note on feature engineering
 
-Earlier work explored adding derived columns on top of this (date features,
-`lane`/`carrier_service`, dimensional-weight/density features, interaction
-terms — see `exploration/`). An ablation test (CatBoost, point regression on
-`transit_days`) found these did not improve on the base columns, likely
-because tree-based models already capture that kind of interaction by
-splitting on the underlying columns. They were left out of the canonical
-pipeline for that reason. This was only tested for tree models; it's an open
-question for linear/other model families, so the code is kept in
-`exploration/` rather than deleted.
+An earlier draft of `clean_data.ipynb` added 24 derived columns on top of
+this (date features, `lane`/`carrier_service`, dimensional-weight/density
+features, interaction terms). An ablation test (CatBoost, point regression
+on `transit_days`, see `models/catboost_transit.ipynb`'s history) found
+these did not improve on the base columns, likely because tree-based models
+already capture that kind of interaction by splitting on the underlying
+columns, so they were dropped from the pipeline rather than kept as
+unused columns. This was only tested for tree models; it's an open question
+for linear/other model families — if you want to revisit it, the code is
+recoverable from git history (`WWEX-2-nishant`, commit `33ecf4d`), not
+`exploration/`.
 
 ## `exploration/`
 
