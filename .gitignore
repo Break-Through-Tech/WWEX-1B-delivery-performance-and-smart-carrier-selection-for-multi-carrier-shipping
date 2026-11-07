@@ -8,3 +8,6 @@ data/engineered_features.csv
 data/test_engineered_features.csv
 data/train_clean.csv
 data/test_clean.csv
+
+# CatBoost training-log artifact, written next to whichever notebook ran it
+catboost_info/
