@@ -3,3 +3,7 @@ numpy
 pandas
 jupyter
 nbconvert
+scikit-learn
+catboost
+lightgbm
+seaborn
